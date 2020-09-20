@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from discord.ext.commands import Bot as BotBase
-from discord import Embed, file
+from discord import Embed, File
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 import os
@@ -60,7 +60,7 @@ class Bot(BotBase):
             embed.set_thumbnail(url=self.guild.icon_url)
             embed.set_image(url=self.guild.icon_url)
             await channel.send(embed=embed)
-            await channel.send(file=file("./data/images/"))
+            await channel.send(file=File("./data/images/side meme 1.jpg"))
 
         else:
             print("Bot reconnected")
