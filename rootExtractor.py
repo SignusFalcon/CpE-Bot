@@ -57,7 +57,3 @@ def extract_root(func: str, debug: bool = False) -> list:
         list_result.append(val[x].evalf())
 
     return list_result
-
-
-#function_sample = "-x^2+x"
-#print(extract_root(function_sample, debug=True))
