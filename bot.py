@@ -1,8 +1,7 @@
 # bot.py
 import os
-from rootExtractor import extract_root
+from lib.ext.rootExtractor import extract_root
 
-import discord
 import random as rand
 from discord.ext import commands
 from dotenv import load_dotenv
