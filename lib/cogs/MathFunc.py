@@ -17,7 +17,7 @@ class MathFunc(Cog):
     @Cog.listener()
     async def on_ready(self):
         if not self.bot.ready:
-            self.bot.cogs_ready.ready_up("MathFunc")
+            self.bot.c.ogs_readyready_up("MathFunc")
 
 
 def setup(bot):
