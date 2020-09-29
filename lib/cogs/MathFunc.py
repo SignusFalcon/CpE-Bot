@@ -9,7 +9,7 @@ class MathFunc(Cog):
 
     @command(aliases=["roots", "root"])
     async def extract(self, ctx, arg):
-        print(f"{ctx.message.author} used the extract command: {ctx.message}")
+        print(f"{ctx.message.author} used the extract command: {ctx.message.content}")
         await ctx.send(f'The roots of: {arg}')
         for x in range(len(roots := extract_root(str(arg)))):
             await ctx.send(f'x{x + 1} = {roots[x]}')

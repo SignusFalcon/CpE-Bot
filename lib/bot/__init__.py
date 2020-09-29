@@ -14,7 +14,7 @@ from ..db import db
 
 load_dotenv()
 
-PREFIX = "c!"
+PREFIX = "c-"
 OWNER_IDS = [213930257684758528]
 COGS = [path.split("\\")[-1][:-3] for path in glob("./lib/cogs/*.py")]
 
@@ -62,9 +62,6 @@ class Bot(BotBase):
         print("Bot running...")
         super().run(self.TOKEN, reconnect=True)
 
-    async def timed_message(self):
-        await self.channel.send("I am a timed notification.")
-
     async def on_connect(self):
         print("Bot Connected")
 
@@ -73,14 +70,9 @@ class Bot(BotBase):
 
     async def on_ready(self):
         if not self.ready:
-            # Guild and channel setup :>
-            self.guild = self.get_guild(757241489125539880)
-            self.channel = self.get_channel(757246258766282762)
-
-            self.scheduler.add_job(self.timed_message, CronTrigger(day_of_week=0, hour=12, minute=0, second=0))
+            # add_job function adds a job inside the scheduler
+            # self.scheduler.add_job(self.timed_message, CronTrigger(day_of_week=0, hour=12, minute=0, second=0))
             self.scheduler.start()
-
-            await self.channel.send("Connected to this server.")
 
             #embed = Embed(title="Now online in " + str(self.guild.name),
             #              description="Do c!help for more information.",
@@ -108,6 +100,11 @@ class Bot(BotBase):
             self.ready = True
             print("Bot ready")
 
+            print("\n======================================\nBot is connected to:")
+            for guild in self.guilds:
+                print(f"{guild.name} (id: {guild.id} )")
+            print("======================================")
+
         else:
             print("Bot reconnected")
 
@@ -115,12 +112,12 @@ class Bot(BotBase):
         if err == "on_command_error":
             await args[0].send("Something went wrong.")
 
-        await self.channel.send("An error occured.")
+        print("An exception occured somewhere around the code.")
         raise
 
     async def on_command_error(self, ctx, exc):
         if isinstance(exc, CommandNotFound):
-            await ctx.send("Wrong command! Do c!help for more info.")
+            await ctx.send("Wrong command! Do c-help for more info.")
         elif hasattr(exc, "original"):
             raise exc.original
         else:
