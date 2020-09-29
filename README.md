@@ -1,2 +1,2 @@
-# CpE-Bot
-Bot for CpE
+# FalconBot
+Bot for Falcon Land
